@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>
+  {{ data?.title }}
+</h2>
+
+<mat-dialog-content>
+  <div class="modal-form">
+    <form [formGroup]="userForm.baseForm">
+      <mat-form-field class="full-width-input">
+        <input formControlName="name" matInput placeholder="name" required />
+        <mat-error *ngIf="checkField('name')">
+          {{ userForm.errorMessage }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width-input">
+        <mat-label>Date of Birth </mat-label>
+        <input formControlName="birth" matInput [matDatepicker]="birth" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="birth"></mat-datepicker-toggle>
+        <mat-datepicker #birth></mat-datepicker>
+        <mat-error *ngIf="checkField('birth')">
+          {{ userForm.errorMessage }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width-input">
+        <input formControlName="age" matInput placeholder="age" required />
+        <mat-error *ngIf="checkField('age')">
+          {{ userForm.errorMessage }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width-input">
+        <mat-label>Date of Inscription </mat-label>
+        <input
+          formControlName="inscription"
+          matInput
+          [matDatepicker]="inscription"
+  
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="inscription"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #inscription></mat-datepicker>
+        <mat-error *ngIf="checkField('inscription')">
+          {{ userForm.errorMessage }}
+        </mat-error>
+      </mat-form-field>
+
+     
+
+
+    </form>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    [disabled]="userForm.baseForm.invalid"
+    mat-raised-button
+    [mat-dialog-close]="true"
+    color="primary"
+    (click)="onSave()"
+    ckdFocusInitial
+  >
+    Save
+  </button>
+</mat-dialog-actions>
